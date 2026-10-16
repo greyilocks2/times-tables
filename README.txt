@@ -1,19 +1,10 @@
-TIMES TABLES TRAINER — PWA EDITION
+Times Tables Trainer — PWA version 2
 
-GITHUB PAGES
-1. Unzip the archive.
-2. Open your GitHub repository, Add file > Upload files.
-3. Upload the CONTENTS of times-tables-pwa, preserving the icons folder.
-4. Commit changes.
-5. Settings > Pages > Deploy from a branch > main > /(root) > Save.
-6. Visit the published HTTPS address. Install using the browser menu.
+Upload the CONTENTS of this ZIP to the root of your GitHub Pages repository.
+Commit changes. GitHub Pages will publish the updated app.
 
-After the initial visit, the app files are cached for offline use.
-The app still works when index.html is opened locally, but PWA installation/offline caching require HTTPS or localhost.
+Changes: table number shown second in quiz; Next checks and records the answer before advancing; Check records and reveals the answer without advancing; responsive stacked mobile buttons; smiling frog PWA icons.
 
-Data is saved in browser localStorage, separately for each website origin and browser.
-Export results from the original file:// version, then import them on the published website.
-Back up regularly; clearing browser data can erase results.
+Existing profiles and results retain the same localStorage key and data structure. Export a backup before updating.
 
-To publish future updates, change CACHE_NAME in service-worker.js (e.g. v2)
-then upload changed files. Existing results are not deleted by changing the cache.
+If an installed PWA still shows the old version, close and reopen it after the new service worker has installed; an extra reload may be needed.
