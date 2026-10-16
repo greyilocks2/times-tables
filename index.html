@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Times Tables Trainer</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <header><h1>✖ Times Tables Trainer</h1><p>Practise, improve, and celebrate your progress!</p></header>
+  <section class="panel controls">
+    <div class="line"><label for="profile">Child</label><select id="profile"></select><button id="addProfile" type="button">+ New child</button><button id="renameProfile" type="button" class="secondary">Change name</button><button id="deleteProfile" type="button" class="danger">Delete child</button></div>
+    <h2>Choose your tables</h2><div id="tables" class="table-picks"></div>
+    <div class="line"><label><input id="includeZero" type="checkbox" checked> Include 0 × the number (on by default)</label></div>
+    <div class="line"><button id="allTables" type="button" class="secondary">Select all</button><button id="clearTables" type="button" class="secondary">Clear</button></div>
+    <div class="line"><label for="mode">Practice</label><select id="mode"><option value="all">All questions</option><option value="weak">Weakest questions</option><option value="new">Not yet attempted</option></select><label for="length">Questions</label><select id="length"><option>5</option><option>10</option><option selected>20</option><option>50</option><option>100</option></select><button id="start" type="button">Start quiz</button></div>
+    <p class="hint">Weakest practice prioritises questions answered incorrectly first, then correctly answered questions taking over 5 seconds on average, then other questions. 7 × 8 and 8 × 7 are tracked as separate questions. Zero questions are included by default.</p>
+  </section>
+  <section class="panel quiz" id="quiz" hidden>
+    <div class="line space"><strong id="counter"></strong><strong id="score"></strong><button id="stop" type="button" class="secondary">End quiz</button></div>
+    <div id="question" class="question" aria-live="polite"></div>
+    <form id="answerForm"><label for="answer" class="sr-only">Your answer</label><input id="answer" type="number" min="0" max="144" inputmode="numeric" autocomplete="off" required placeholder="Your answer"><button id="submitAnswer" type="submit">Check</button><button id="next" type="button" hidden>Next →</button></form>
+    <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+  </section>
+  <section class="panel" id="summary" hidden><h2>Quiz finished!</h2><p id="summaryText"></p><button id="again" type="button">Practise again</button></section>
+  <section class="panel"><div class="line space"><h2>Progress</h2><div class="line"><button id="export" type="button" class="secondary">Export results</button><label class="button secondary" for="import">Import results</label><input id="import" type="file" accept="application/json,.json" hidden></div></div>
+    <div class="stats"><div><strong id="total">0</strong><small>Answers</small></div><div><strong id="accuracy">—</strong><small>Accuracy</small></div><div><strong id="practised">0 / 156</strong><small>Facts tried</small></div></div>
+    <div class="line"><label for="factOrder">Show questions</label><select id="factOrder"><option value="normal">9 × 3 (table first)</option><option value="reverse">3 × 9 (table second)</option></select></div>
+    <div class="line"><label for="search">Find question</label><input id="search" type="search" placeholder="e.g. 7 × 8 or 7x8"></div>
+    <div class="scroll"><table><thead><tr><th><button data-sort="fact">Question ↕</button></th><th><button data-sort="attempts">Attempts ↕</button></th><th><button data-sort="correct">Correct ↕</button></th><th><button data-sort="accuracy">Accuracy ↕</button></th><th><button data-sort="time">Avg. seconds ↕</button></th><th><button data-sort="last">Last tried ↕</button></th></tr></thead><tbody id="results"></tbody></table></div>
+    <p class="hint" id="storageNote">Results are saved in this browser. Export them regularly as a backup. Local-file storage may not survive moving files, switching browsers, or clearing browser data.</p>
+  </section>
+</main>
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(console.error));
+}
+</script>
+</body></html>
