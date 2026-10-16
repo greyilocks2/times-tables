@@ -1,4 +1,4 @@
-Times Tables Trainer — PWA version 2
+Times Tables Trainer — PWA version 2 ...
 
 Upload the CONTENTS of this ZIP to the root of your GitHub Pages repository.
 Commit changes. GitHub Pages will publish the updated app.
